@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动条</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding:0;
+		}
+		#wrap{
+			width: 580px;
+			height: 600px;
+		/*	background-color: lightgray;*/
+			border:1px black solid;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		#left{
+			width: 550px;
+			height: 100%;
+			background-color: lightgray;
+			overflow: hidden;
+			font-size:20px;
+			position: relative;
+			float: left;
+		}
+		#word{
+			position: absolute;
+		}
+		#right{
+			width:30px;	
+			height: 100%;
+			background-color:black;
+			float: left;
+			position: relative;
+		}
+		#slide{
+			width: 30px;
+			height: 50px;
+			background-color:lightgreen;
+			position: absolute;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="left">
+			<div id="word">
+				<p>　2012年11月15日，刚刚在中共十八届一中全会上当选的中共中央总书记习近平和中央政治局常委李克强、张德江、俞正声、刘云山、王岐山、张高丽在北京人民大会堂同采访十八大的中外记者亲切见面。这是习近平总书记发表讲话。新华社记者丁林摄
+　　				十八大，刚刚担任总书记的习近平，面对500多名中外记者，直言不讳地指出：“一				些党员干部中发生的贪污腐败、脱离群众、形式主义、官僚主义等问题，必须					下大气力解决。全党必须警醒起来。”
+　　				主持十八届中央政治局第一次集体学习，习近平语重心长地说：“大量事实告诉我们				，腐败问题越演越烈，最终必然会亡党亡国！”
+　　				在十八届中央纪委二次全会上讲话，习近平谆谆告诫：“如果不坚决纠正不良风气，				任其发展下去，我们党就会失去根基、失去血脉、失去力量。”
+				十八大，刚刚担任总书记的习近平，面对500多名中外记者，直言不讳地指出：“一				些党员干部中发生的贪污腐败、脱离群众、形式主义、官僚主义等问题，必须					下大气力解决。全党必须警醒起来。”
+　　				主持十八届中央政治局第一次集体学习，习近平语重心长地说：“大量事实告诉我们				，腐败问题越演越烈，最终必然会亡党亡国！”
+　　				在十八届中央纪委二次全会上讲话，习近平谆谆告诫：“如果不坚决纠正不良风气，				任其发展下去，我们党就会失去根基、失去血脉、失去力量。”
+2012年11月15日，刚刚在中共十八届一中全会上当选的中共中央总书记习近平和中央政治局常委李克强、张德江、俞正声、刘云山、王岐山、张高丽在北京人民大会堂同采访十八大的中外记者亲切见面。这是习近平总书记发表讲话。新华社记者丁林摄
+　　				十八大，刚刚担任总书记的习近平，面对500多名中外记者，直言不讳地指出：“一				些党员干部中发生的贪污腐败、脱离群众、形式主义、官僚主义等问题，必须					下大气力解决。全党必须警醒起来。”
+　　				主持十八届中央政治局第一次集体学习，习近平语重心长地说：“大量事实告诉我们				，腐败问题越演越烈，最终必然会亡党亡国！”
+　　				在十八届中央纪委二次全会上讲话，习近平谆谆告诫：“如果不坚决纠正不良风气，				任其发展下去，我们党就会失去根基、失去血脉、失去力量。”
+				十八大，刚刚担任总书记的习近平，面对500多名中外记者，直言不讳地指出：“一				些党员干部中发生的贪污腐败、脱离群众、形式主义、官僚主义等问题，必须					下大气力解决。全党必须警醒起来。”
+　　				主持十八届中央政治局第一次集体学习，习近平语重心长地说：“大量事实告诉我们				，腐败问题越演越烈，最终必然会亡党亡国！”
+				</p>
+			</div>
+		</div>
+
+
+		<div id="right">
+			<div id="slide"></div>
+		</div>
+
+
+	</div>
+</body>
+<script type="text/javascript">
+	var left=document.getElementById('left');
+	var word=document.getElementById("word");
+	var right=document.getElementById("right");
+	var slide=document.getElementById("slide");
+
+	slide.onmousedown=function(a){
+		var ev=a||window.event;
+		var y1=ev.clientY-slide.offsetTop;
+		window.onmousemove=function(e){
+			var ev=e||window.event;
+			var y2=ev.clientY;
+
+			var  y3=y2-y1;
+
+			var maxheight=right.offsetHeight-slide.offsetHeight;
+			if (y3<0) {
+				y3=0
+			}else if(y3>maxheight){
+				y3=maxheight
+			}
+
+			slide.style.top=y3+"px";
+			var scal=y3/maxheight;
+			var wordloop=word.offsetHeight-left.offsetHeight;
+			word.style.top=-scal*wordloop+"px";
+		}
+	}
+	slide.onmouseup=function(b){
+		var ev=b||window.event;
+		window.onmousedown=null;
+		window.onmousemove=null;
+	}
+</script>
+</html>
